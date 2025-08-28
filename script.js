@@ -123,7 +123,7 @@ if (Menu1) {
 const Menu2 = document.getElementById("menu-2");
 if (Menu2) {   // ✅ Check Menu2 exists
     singleMenu2.forEach(item => {
-        Menu2.innerHTML += `   // ✅ Append to Menu2
+        Menu2.innerHTML += `
       <div class="col-md-12 py-2" data-key="${item.id}">
         <div class="menuCardBox text-center d-flex flex-nowrap">
           <div class="menuCardImage">
@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const thankYouCard = document.getElementById("NthankYouCard");
     const bookAnother = document.getElementById("bookAnother");
 
-    if (myForm && bookingForm && thankYouCard && bookAnother) {
+    if (myForm && bookingForm && thankYouCard) {
         // Handle form submit
         myForm.addEventListener("submit", function (e) {
             e.preventDefault();
@@ -267,25 +267,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
-
-// blog comment 
-document.addEventListener("DOMContentLoaded", function () {
-    const commentForm = document.getElementById("commentForm");
-    const successMessage = document.getElementById("successMessage");
-
-    if (commentForm && successMessage) {
-      commentForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        // Show thank you message
-        successMessage.classList.remove("d-none");
-
-        // Hide after 3 sec and reset form
-        setTimeout(() => {
-          successMessage.classList.add("d-none");
-          commentForm.reset();
-        }, 3000);
-      });
-    }
-  });
 
