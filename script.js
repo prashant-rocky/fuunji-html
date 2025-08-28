@@ -190,29 +190,33 @@ const Blogs2 = [
         person3: "assets/images/comment3.jfif"
     }
 ];
-const Myform = document.getElementById("reservationForm");
-const bookingForm = document.getElementById("bookingForm");
-const NthankYouCard = document.getElementById("thankYouCard");
 
 document.addEventListener("DOMContentLoaded", function () {
-    const myForm = document.getElementById("reservationForm");
-    const bookingForm = document.getElementById("bookingForm");
-    const thankYouCard = document.getElementById("thankYouCard");
+    const myForm = document.getElementById("NreservationForm");
+    const bookingForm = document.getElementById("NbookingForm");
+    const thankYouCard = document.getElementById("NthankYouCard");
+    const bookAnother = document.getElementById("bookAnother");
 
-    // Handle form submit
-    myForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        bookingForm.classList.add("d-none");    // hide booking form
-        thankYouCard.classList.remove("d-none"); // show thank you card
-    });
+    if (myForm && bookingForm && thankYouCard && bookAnother) {
+        // Handle form submit
+        myForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            bookingForm.classList.add("d-none");    // hide booking form
+            thankYouCard.classList.remove("d-none"); // show thank you card
+        });
 
-    // Handle "Book Another Table"
-    window.bookAnother = function () {
-        thankYouCard.classList.add("d-none");
-        bookingForm.classList.remove("d-none");
-        myForm.reset(); // reset form values
-    };
+        // Handle "Book Another Table"
+        bookAnother.addEventListener("click", function () {
+            thankYouCard.classList.add("d-none");   // hide thank you
+            bookingForm.classList.remove("d-none"); // show form
+            myForm.reset(); // reset values
+        });
+    } else {
+        console.warn("❌ One or more elements not found in DOM");
+    }
 });
+
+
 
 window.addEventListener("load", function () {
     if (window.cookieconsent) {
@@ -241,72 +245,47 @@ window.addEventListener("load", function () {
         }
     }
 });
-const contactForm = document.getElementById("contactForm");
+document.addEventListener("DOMContentLoaded", function () {
+    const contactForm = document.getElementById("contactForm");
     const thankYouCard = document.getElementById("thankYouCard");
 
-    // Handle form submission
-    contactForm.addEventListener("submit", function (e) {
-        e.preventDefault(); // stop page reload
-        contactForm.classList.add("d-none");   // hide form
-        thankYouCard.classList.remove("d-none"); // show thank you card
-        contactForm.reset(); // reset inputs
-    });
-
-    // Reset to form view
-    function resetForm() {
-        thankYouCard.classList.add("d-none");  // hide thank you card
-        contactForm.classList.remove("d-none"); // show form
+    if (contactForm && thankYouCard) {
+        // Handle form submission
+        contactForm.addEventListener("submit", function (e) {
+            e.preventDefault(); // stop page reload
+            contactForm.classList.add("d-none");   // hide form
+            thankYouCard.classList.remove("d-none"); // show thank you card
+            contactForm.reset(); // reset inputs
+        });
     }
 
-
-// ✅ Render Blogs
-const blogContainer = document.getElementById("blogContainer");
-Blogs2.forEach(blog => {
-    blogContainer.innerHTML += `
-      <div class="col-md-12 py-3">
-        <div class="blog-card">
-          <div class="blogImg">
-            <img src="${blog.imgSrc}" alt="Blog" class="img-fluid w-100" />
-          </div>
-          <div class="content py-3">
-            <div class="layerImg py-3">
-              <img src="assets/images/layer-1.png" alt="error" height="40" width="200" />
-            </div>
-            <h2>${blog.title}</h2>
-            <p class="py-2">20 August 2025</p>
-            <p>${blog.content}</p>
-            <p>${blog.content2}</p>
-            ${blog.content3 ? `<p>${blog.content3}</p>` : ""}
-            
-            <h3 class="pt-3">Comments</h3>
-            
-            <div class="firstComment py-4">
-              <div class="personImage">
-                <img src="${blog.person1}" alt="error" height="100" width="100" class="px-3 rounded-5" />
-                <span>${blog.comment1}</span>
-                <h5 class="d-inline px-3">${blog.name1}</h5>
-              </div>
-            </div>
-
-            <div class="secondComent ps-5 py-4">
-              <div class="personImage">
-                <img src="${blog.person12}" alt="error" height="100" width="100" class="px-3 rounded-5" />
-                <span>${blog.comment2}</span>
-                <h5 class="d-inline px-3">${blog.name2}</h5>
-              </div>
-            </div>
-
-            <div class="thirdComment py-4">
-              <div class="personImage">
-                <img src="${blog.person3}" alt="error" height="100" width="100" class="px-3 rounded-5" />
-                <span>${blog.comment3}</span>
-                <h5 class="d-inline px-3">${blog.name3}</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr />
-      </div>
-    `;
+    // Reset to form view
+    window.resetForm = function () {
+        if (thankYouCard && contactForm) {
+            thankYouCard.classList.add("d-none");  // hide thank you card
+            contactForm.classList.remove("d-none"); // show form
+        }
+    }
 });
+
+// blog comment 
+document.addEventListener("DOMContentLoaded", function () {
+    const commentForm = document.getElementById("commentForm");
+    const successMessage = document.getElementById("successMessage");
+
+    if (commentForm && successMessage) {
+      commentForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Show thank you message
+        successMessage.classList.remove("d-none");
+
+        // Hide after 3 sec and reset form
+        setTimeout(() => {
+          successMessage.classList.add("d-none");
+          commentForm.reset();
+        }, 3000);
+      });
+    }
+  });
 

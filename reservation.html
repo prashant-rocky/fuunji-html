@@ -62,9 +62,9 @@
     </section>
     <!-- Book Table Section -->
     <div class="d-flex justify-content-center align-items-center mt-5">
-        <div class="card p-4 shadow" style="width: 28rem;" id="bookingForm">
+        <div class="card p-4 shadow" style="width: 28rem;" id="NbookingForm">
             <h3 class="text-center mb-4">Book a Table</h3>
-            <form id="reservationForm">
+            <form id="NreservationForm">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name"
@@ -104,10 +104,10 @@
         </div>
 
         <!-- Thank You Card (hidden by default) -->
-        <div class="card p-5 text-center shadow d-none" style="width: 28rem;" id="thankYouCard">
+        <div class="card p-5 text-center shadow d-none" style="width: 28rem;" id="NthankYouCard">
             <h3 class="mb-3">Thank You!</h3>
             <p>Your reservation has been received. We look forward to serving you.</p>
-            <button class="btn btn-success" onclick="bookAnother()">Book Another Table</button>
+            <button class="btn btn-success" id="bookAnother">Book Another Table</button>
         </div>
     </div>
 
